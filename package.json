@@ -4,11 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
+    "test:watch": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
   },
   "repository": {
-    "type": "git",
-    "url": "git+https://github.com/maycon-santana/nodejs-testes-unitarios.git"
+    "type": "git"
   },
   "keywords": [],
   "author": "",
@@ -20,6 +20,8 @@
   "devDependencies": {
     "eslint": "^8.55.0",
     "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-plugin-import": "^2.29.0"
-  }
+    "eslint-plugin-import": "^2.29.0",
+    "jest": "28.1.0"
+  },
+  "type": "module"
 }
