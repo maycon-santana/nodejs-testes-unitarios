@@ -46,4 +46,54 @@ describe('Testes do carrinho', () => {
         
         expect(carrinho).toHaveProperty('total');       
     });
+
+    it('Deve lança erro ao finalizar compra com carrinho vazio', () => {
+        
+        function englobaErroCarrinho() {
+            const carrinho = new Carrinho();
+            carrinho.finalizaCompra();
+        }
+
+        expect(englobaErroCarrinho).toThrowError('Carrinho de compras vazio');
+    });
+
+    it('Deve adicionar o frete', () => {
+        const carrinho = new Carrinho();
+        carrinho.adicionaFrete(10);
+        expect(carrinho.frete).toBe(10);
+    });
+
+    it('Deve finalizar as compras', () => {
+        const item = new Item('Banana', 2, 5);
+        const item2 = new Item('Abacaxi', 1, 5);
+        const item3 = new Item('Maça', 2, 4);
+        
+        const carrinho = new Carrinho();
+        carrinho.adiciona(item);
+        carrinho.adiciona(item2);
+        carrinho.adiciona(item3);
+        carrinho.adicionaFrete(10);
+
+        expect(carrinho.finalizaCompra()).toStrictEqual({
+            subtotal: 23,
+            frete: 10,
+            total: 33
+        })
+    });
+
+    it('Deve calcular o valot total', () => {
+        const item = new Item('Banana', 2, 5);
+        const item2 = new Item('Abacaxi', 1, 5);
+        const item3 = new Item('Maça', 2, 4);
+        
+        const carrinho = new Carrinho();
+        carrinho.adiciona(item);
+        carrinho.adiciona(item2);
+        carrinho.adiciona(item3);
+        carrinho.adicionaFrete(10);
+
+        const resultadoCalculo = carrinho.calculaTotal();
+        expect(resultadoCalculo).toEqual (33);
+    });
+
 });
